@@ -1,82 +1,88 @@
 import React from 'react'
 import './App.css';
 import { useState } from 'react';
+import { evaluate } from 'mathjs';
+
 
 const App = () => {
-  const [display,setDisplay] = useState('');
+  const [display, setDisplay] = useState('');
+  const handleSubmit = () => {
+    const value = evaluate(display);
+    setDisplay(value);
+  }
   return (
     <div className='mainBody'>
       <div className='myContainer'>
         <div className='row inputRow'>
-          
-          <input type='text' 
-          className='col-12 display' value={display}
-          onChange={(event) => setDisplay(event.target.value)}
-          onKeyDown={(event) => event.preventDefault()}
+
+          <input type='text'
+            className='col-12 display' value={display}
+            onChange={(event) => setDisplay(event.target.value)}
+            onKeyDown={(event) => event.preventDefault()}
           />
         </div>
         <div className='row signRow'>
-          <div className='col left' onClick={()=>setDisplay(display+'1')}>
+          <div className='col left' onClick={() => setDisplay(display + '1')}>
             1
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'2')}>
+          <div className='col mid' onClick={() => setDisplay(display + '2')}>
             2
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'3')}>
+          <div className='col mid' onClick={() => setDisplay(display + '3')}>
             3
           </div>
-          <div className='col operator sign ' onClick={()=>setDisplay(display+'/')}>
+          <div className='col operator sign ' onClick={() => setDisplay(display + '/')}>
             /
           </div>
         </div>
         <div className='row signRow'>
-          <div className='col left' onClick={()=>setDisplay(display+'4')}>
+          <div className='col left' onClick={() => setDisplay(display + '4')}>
             4
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'5')} >
+          <div className='col mid' onClick={() => setDisplay(display + '5')} >
             5
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'6')}>
+          <div className='col mid' onClick={() => setDisplay(display + '6')}>
             6
           </div>
-          <div className='col operator sign' onClick={()=>setDisplay(display+'*')}>
+          <div className='col operator sign' onClick={() => setDisplay(display + '*')}>
             *
           </div>
         </div>
         <div className='row signRow'>
-          <div className='col left' onClick={()=>setDisplay(display+'7')}>
+          <div className='col left' onClick={() => setDisplay(display + '7')}>
             7
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'8')}>
+          <div className='col mid' onClick={() => setDisplay(display + '8')}>
             8
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'9')}>
+          <div className='col mid' onClick={() => setDisplay(display + '9')}>
             9
           </div>
-          <div className='col operator sign' onClick={()=>setDisplay(display+'+')}>
+          <div className='col operator sign' onClick={() => setDisplay(display + '+')}>
             +
           </div>
         </div>
         <div className='row signRow'>
-          <div className='col left' onClick={()=>setDisplay(display+'.')}>
+          <div className='col left' onClick={() => setDisplay(display + '.')}>
             .
           </div>
-          <div className='col mid' onClick={()=>setDisplay(display+'0')}>
+          <div className='col mid' onClick={() => setDisplay(display + '0')}>
             0
           </div>
-          <div className='col mid'>
+          <div className='col mid' onClick={handleSubmit}>
             =
           </div>
-          <div className='col operator sign' onClick={()=>setDisplay(display+'-')}>
+          <div className='col operator sign' onClick={() => setDisplay(display + '-')}>
             -
           </div>
         </div>
         <div className='row clear'>
-          <div className='col clear' onClick={()=>setDisplay('')}>
+          <div className='col clear' onClick={() => setDisplay('')}>
             Clear All
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   )
 }
